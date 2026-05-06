@@ -25,13 +25,6 @@
     };
 
     macros {
-        ime_toggle: ime_toggle {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&kp LA(GRAVE)>;
-            label = "IME_TOGGLE";
-        };
-
         brakects: brakects {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
