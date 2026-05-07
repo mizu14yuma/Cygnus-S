@@ -6,7 +6,7 @@
 #include <dt-bindings/zmk/pointing.h>
 
 / {
-    /* ホイール・センサー設定 */
+    /* スクロール・センサー設定 */
     behaviors {
         ROTATE: ROTATE {
             compatible = "zmk,behavior-sensor-rotate-var";
@@ -17,7 +17,7 @@
         };
     };
 
-    /* マクロ設定：括弧を入力してカーソルを中に戻す */
+    /* マクロ設定：あなたの希望する括弧ペアとIME切り替え */
     macros {
         macro_brackets: macro_brackets { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp LBKT &kp RBKT &kp LEFT>; };
         macro_braces: macro_braces { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp LBRC &kp RBRC &kp LEFT>; };
@@ -29,34 +29,34 @@
     keymap {
         compatible = "zmk,keymap";
 
-        /* レイヤー0 (DEFAULT): あなたの物理配置リストを完全再現 */
+        /* レイヤー0 (DEFAULT): 10-12-14-6 構成 */
         default_layer {
             bindings = <
 /* 1段目(10) */  &kp Q  &kp L  &kp U  &kp COMMA  &kp DOT                    &kp F  &kp W  &kp R  &kp Y  &kp P
 /* 2段目(12) */  &kp E  &kp I  &kp A  &kp O  &kp EQUAL  &none               &kp BSPC  &kp K  &kp T  &kp N  &kp S  &kp H
-/* 3段目(12) */  &kp Z  &kp X  &kp C  &kp V  &kp SEMI  &ime_toggle          &kp DEL  &kp G  &kp D  &kp M  &kp J  &kp B
-/* 4段目(4) + 親指(6) */  &kp LCTRL  &kp LGUI  &kp LALT  &lt 6 ESC  &lt 1 TAB  &mkp LCLK  &mkp RCLK  &lt 2 RET  &lt 3 SPACE  &mkp MB1
+/* 3段目(14) */  &kp LCTRL  &kp LGUI  &kp Z  &kp X  &kp C  &kp V  &kp SEMI  &kp G  &kp D  &kp M  &kp J  &kp B  &kp RET  &kp DEL
+/* 親指系(6) */                      &kp LALT  &lt 1 TAB  &mkp MB1      &lt 2 RET  &lt 3 SPACE  &none
             >;
             sensor-bindings = <&ROTATE SCRL_DOWN SCRL_UP>;
         };
 
-        /* レイヤー1 (SIGN): [ ] の真下に ( ) を配置 */
+        /* レイヤー1 (SIGN): [ ] の下に ( ) が来る配置 */
         SIGN {
             bindings = <
 /* 1段目 */  &kp LBRC  &kp RBRC  &macro_braces  &macro_dqt  &kp PLUS           &none  &kp EXCL  &kp QMARK  &kp TILDE  &kp GRAVE
 /* 2段目 */  &kp LBKT  &kp RBKT  &macro_brackets &kp EQUAL  &none  &none       &none  &kp UNDER &kp AT     &kp HASH   &kp DLLR   &kp PRCNT
-/* 3段目 */  &kp LPAR  &kp RPAR  &macro_parens   &kp ASTRK  &kp CARET  &none   &none  &none     &kp AMPS   &kp SLASH  &kp PIPE   &kp BSLH
-/* 4段目+親指 */  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+/* 3段目 */  &trans  &trans  &kp LPAR  &kp RPAR  &macro_parens  &kp ASTRK  &kp CARET  &trans  &kp AMPS  &kp SLASH  &kp PIPE  &kp BSLH  &trans  &trans
+/* 親指系 */                            &trans  &trans  &trans        &trans  &trans  &trans
             >;
         };
 
-        /* レイヤー2 (NUM_FN): 数字とファンクションキー */
+        /* レイヤー2 (NUM_FN): 数字とファンクション */
         NUM_FN {
             bindings = <
 /* 1段目 */  &kp N1  &kp N2  &kp N3  &kp N4  &kp N5                 &kp N6  &kp N7  &kp N8  &kp N9  &kp N0
 /* 2段目 */  &kp F1  &kp F2  &kp F3  &kp F4  &kp F5  &none          &none  &kp F6  &kp F7  &kp F8  &kp F9  &kp F10
-/* 3段目 */  &kp F11 &kp F12 &none   &none   &none   &none          &none  &none   &none   &none   &none   &none
-/* 4段目+親指 */  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+/* 3段目 */  &trans  &trans  &kp F11 &kp F12 &none   &none   &none  &none  &none   &none   &none   &none   &trans  &trans
+/* 親指系 */                            &trans  &trans  &trans  &trans  &trans  &trans
             >;
         };
 
@@ -65,8 +65,8 @@
             bindings = <
 /* 1段目 */  &none  &kp HOME  &kp UP    &kp END   &none                 &none  &none  &none  &none  &none
 /* 2段目 */  &none  &kp LEFT  &kp DOWN  &kp RIGHT &none  &none          &none  &none  &none  &none  &none  &none
-/* 3段目 */  &kp PG_UP  &kp PG_DN  &none   &none   &none   &none        &none  &none  &none  &none  &none  &none
-/* 4段目+親指 */  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+/* 3段目 */  &trans  &trans  &kp PG_UP &kp PG_DN &none  &none  &none  &none  &none  &none  &none  &none  &trans  &trans
+/* 親指系 */                            &trans  &trans  &trans  &trans  &trans  &trans
             >;
         };
     };
