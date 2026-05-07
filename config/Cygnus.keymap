@@ -60,8 +60,8 @@
             bindings = <
 &kp Q             &kp L     &kp U     &kp COMMA  &kp DOT                                          &kp F        &kp W  &kp R  &kp Y  &kp P
 &kp E             &kp I     &kp A     &kp O      &kp MINUS  &kp INTERNATIONAL_4      &kp BSPC     &kp K        &kp T  &kp N  &kp S  &kp H
-&kp Z             &kp X     &kp C     &kp V      &kp SEMI   &kp INTERNATIONAL_5      &kp DEL      &kp G        &kp D  &kp M  &kp J  &kp B
-&kp LEFT_CONTROL  &kp LGUI  &kp LALT  &kp TAB    &mkp MB1   &mkp MB2                 &lt 1 ENTER  &lt 3 SPACE                       &kp ESC
+&mt LEFT_SHIFT Z  &kp X     &kp C     &kp V      &kp SEMI   &kp INTERNATIONAL_5      &kp DEL      &kp G        &kp D  &kp M  &kp J  &kp B
+&kp LEFT_CONTROL  &kp LGUI  &kp LALT  &lt 2 TAB  &mkp MB1   &mkp MB2                 &lt 1 ENTER  &lt 3 SPACE                       &kp ESC
             >;
 
             sensor-bindings = <&ROTATE SCRL_DOWN SCRL_UP>;
