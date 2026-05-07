@@ -1,72 +1,125 @@
-#define ZMK_POINTING_DEFAULT_SCRL_VAL 120
+#define ZMK_POINTING_DEFAULT_SCRL_VAL 120    // default: 10
 
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/pointing.h>
 
+#define MOUSE 4
+#define SCROLL 5
+#define NUM 6
+
+&mt {
+    flavor = "balanced";
+    quick-tap-ms = <0>;
+};
+
 / {
-    /* スクロール・センサー設定 */
+    combos {
+        compatible = "zmk,combos";
+
+        double_quotation {
+            bindings = <&kp DOUBLE_QUOTES>;
+            key-positions = <20 21>;
+        };
+    };
+
+    macros {
+        to_layer_0: to_layer_0 {
+            compatible = "zmk,behavior-macro-one-param";
+            #binding-cells = <1>;
+            bindings = <&to 0 &macro_param_1to1 &kp MACRO_PLACEHOLDER>;
+            label = "TO_LAYER_0";
+        };
+    };
+
     behaviors {
+        lt_to_layer_0: lt_to_layer_0 {
+            compatible = "zmk,behavior-hold-tap";
+            label = "LAYER_TAP_TO_0";
+            bindings = <&mo>, <&to_layer_0>;
+
+            #binding-cells = <2>;
+            tapping-term-ms = <200>;
+        };
+
         ROTATE: ROTATE {
             compatible = "zmk,behavior-sensor-rotate-var";
             label = "ROTATE";
             #sensor-binding-cells = <2>;
             bindings = <&msc>, <&msc>;
+
             tap-ms = <20>;
         };
-    };
-
-    /* マクロ設定：あなたの希望する括弧ペアとIME切り替え */
-    macros {
-        macro_brackets: macro_brackets { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp LBKT &kp RBKT &kp LEFT>; };
-        macro_braces: macro_braces { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp LBRC &kp RBRC &kp LEFT>; };
-        macro_parens: macro_parens { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp LPAR &kp RPAR &kp LEFT>; };
-        macro_dqt: macro_dqt { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp DQT &kp DQT &kp LEFT>; };
-        ime_toggle: ime_toggle { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp LA(GRAVE)>; };
     };
 
     keymap {
         compatible = "zmk,keymap";
 
-        /* レイヤー0 (DEFAULT): 10-12-14-6 構成 */
         default_layer {
             bindings = <
-/* 1段目(10) */  &kp Q  &kp L  &kp U  &kp COMMA  &kp DOT                    &kp F  &kp W  &kp R  &kp Y  &kp P
-/* 2段目(12) */  &kp E  &kp I  &kp A  &kp O  &kp EQUAL  &none               &kp BSPC  &kp K  &kp T  &kp N  &kp S  &kp H
-/* 3段目(14) */  &kp LCTRL  &kp LGUI  &kp Z  &kp X  &kp C  &kp V  &kp SEMI  &kp G  &kp D  &kp M  &kp J  &kp B  &kp RET  &kp DEL
-/* 親指系(6) */                      &kp LALT  &lt 1 TAB  &mkp MB1      &lt 2 RET  &lt 3 SPACE  &none
+&kp Q      &kp L     &kp U     &kp COMMA  &kp DOT                             &kp F      &kp W  &kp R  &kp Y  &kp P
+&kp E      &kp I     &kp A     &kp O      &kp MINUS  &mkp RCLK      &kp BSPC  &kp K      &kp T  &kp N  &kp S  &kp H
+&kp Z      &kp X     &kp C     &kp V      &kp SEMI   &mkp LCLK      &kp DEL   &kp G      &kp D  &kp M  &kp J  &kp B
+&kp LCTRL  &kp LGUI  &kp LALT  &kp TAB    &mkp MB1   &mkp MB2       &kp RET   &kp SPACE                       &kp ESC
             >;
+
             sensor-bindings = <&ROTATE SCRL_DOWN SCRL_UP>;
         };
 
-        /* レイヤー1 (SIGN): [ ] の下に ( ) が来る配置 */
-        SIGN {
+        NUM {
             bindings = <
-/* 1段目 */  &kp LBRC  &kp RBRC  &macro_braces  &macro_dqt  &kp PLUS           &none  &kp EXCL  &kp QMARK  &kp TILDE  &kp GRAVE
-/* 2段目 */  &kp LBKT  &kp RBKT  &macro_brackets &kp EQUAL  &none  &none       &none  &kp UNDER &kp AT     &kp HASH   &kp DLLR   &kp PRCNT
-/* 3段目 */  &trans  &trans  &kp LPAR  &kp RPAR  &macro_parens  &kp ASTRK  &kp CARET  &trans  &kp AMPS  &kp SLASH  &kp PIPE  &kp BSLH  &trans  &trans
-/* 親指系 */                            &trans  &trans  &trans        &trans  &trans  &trans
+&kp MINUS                   &kp KP_NUMBER_7  &kp KP_NUMBER_8  &kp KP_NUMBER_9  &kp PLUS                                     &kp CARET         &kp AMPERSAND      &kp TILDE       &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS
+&kp SLASH                   &kp KP_NUMBER_4  &kp KP_NUMBER_5  &kp KP_NUMBER_6  &kp ASTERISK  &trans         &kp UNDERSCORE  &kp EXCLAMATION   &kp AT_SIGN        &kp HASH        &kp DOLLAR            &kp PERCENT
+&mt LEFT_SHIFT KP_NUMBER_0  &kp KP_NUMBER_1  &kp KP_NUMBER_2  &kp KP_NUMBER_3  &kp PERIOD    &kp EQUAL      &trans          &kp LEFT_BRACKET  &kp RIGHT_BRACKET  &kp LEFT_BRACE  &kp RIGHT_BRACE       &kp BACKSLASH
+&trans                      &trans           &trans           &trans           &trans        &trans         &trans          &trans                                                                     &kp PIPE
             >;
         };
 
-        /* レイヤー2 (NUM_FN): 数字とファンクション */
-        NUM_FN {
+        FUNCTION {
             bindings = <
-/* 1段目 */  &kp N1  &kp N2  &kp N3  &kp N4  &kp N5                 &kp N6  &kp N7  &kp N8  &kp N9  &kp N0
-/* 2段目 */  &kp F1  &kp F2  &kp F3  &kp F4  &kp F5  &none          &none  &kp F6  &kp F7  &kp F8  &kp F9  &kp F10
-/* 3段目 */  &trans  &trans  &kp F11 &kp F12 &none   &none   &none  &none  &none   &none   &none   &none   &trans  &trans
-/* 親指系 */                            &trans  &trans  &trans  &trans  &trans  &trans
+&kp N1  &kp N2  &kp N3  &kp N4  &kp N5                        &kp N6  &kp N7  &kp N8  &kp N9  &kp N0
+&kp F1  &kp F2  &kp F3  &kp F4  &kp F5  &kp F11      &kp F12  &kp F6  &kp F7  &kp F8  &kp F9  &kp F10
+&trans  &trans  &trans  &trans  &trans  &trans       &trans   &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans       &trans   &trans                          &trans
             >;
         };
 
-        /* レイヤー3 (ARROW): 矢印キー */
         ARROW {
             bindings = <
-/* 1段目 */  &none  &kp HOME  &kp UP    &kp END   &none                 &none  &none  &none  &none  &none
-/* 2段目 */  &none  &kp LEFT  &kp DOWN  &kp RIGHT &none  &none          &none  &none  &none  &none  &none  &none
-/* 3段目 */  &trans  &trans  &kp PG_UP &kp PG_DN &none  &none  &none  &none  &none  &none  &none  &none  &trans  &trans
-/* 親指系 */                            &trans  &trans  &trans  &trans  &trans  &trans
+&trans       &kp HOME        &kp UP_ARROW    &kp END          &trans                             &trans  &trans  &trans  &trans  &trans
+&kp PAGE_UP  &kp LEFT_ARROW  &kp DOWN_ARROW  &kp RIGHT_ARROW  &kp PAGE_DOWN  &trans      &trans  &trans  &trans  &trans  &trans  &trans
+&trans       &trans          &trans          &trans           &trans         &trans      &trans  &trans  &trans  &trans  &trans  &trans
+&trans       &trans          &trans          &trans           &trans         &trans      &trans  &trans                          &trans
+            >;
+
+            sensor-bindings = <&inc_dec_kp LC(PAGE_UP) LC(PAGE_DOWN)>;
+        };
+
+        MOUSE {
+            bindings = <
+&trans       &trans       &kp LC(PAGE_UP)  &kp LC(PAGE_DOWN)  &kp LC(W)                         &kp LC(W)  &kp LC(PAGE_UP)  &kp LC(PAGE_DOWN)  &trans       &trans
+&lt 5 SPACE  &lt 4 SPACE  &mkp LCLK        &mkp RCLK          &mkp MCLK  &trans         &trans  &mkp MCLK  &mkp LCLK        &mkp MCLK          &lt 4 SPACE  &lt 5 SPACE
+&trans       &trans       &trans           &trans             &trans     &mkp RCLK      &trans  &trans     &mkp MB4         &mkp MB5           &trans       &trans
+&trans       &trans       &trans           &trans             &trans     &trans         &trans  &trans                                                      &trans
+            >;
+        };
+
+        SCROLL {
+            bindings = <
+&trans  &trans  &trans  &trans  &trans                      &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &trans  &trans  &trans  &trans
+&none   &trans  &trans  &trans  &trans  &trans      &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans                          &trans
+            >;
+        };
+
+        layer_6 {
+            bindings = <
+&trans  &trans        &trans        &trans        &trans                                 &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4
+&trans  &trans        &trans        &trans        &trans     &trans      &studio_unlock  &trans        &trans        &trans        &trans        &trans
+&trans  &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &kt KP_N4  &trans      &bootloader     &trans        &trans        &trans        &trans        &bt BT_CLR
+&trans  &trans        &trans        &trans        &trans     &trans      &trans          &trans                                                  &bt BT_CLR_ALL
             >;
         };
     };
