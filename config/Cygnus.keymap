@@ -86,10 +86,10 @@
 
         default_layer {
             bindings = <
-&kp Q             &kp L         &kp U         &kp COMMA  &kp DOT                                        &kp F        &kp W  &kp R  &kp Y  &kp P
-&kp E             &kp I         &kp A         &kp O      &kp MINUS      &none            &kp BACKSPACE  &kp K        &kp T  &kp N  &kp S  &kp H
-&mt LEFT_SHIFT Z  &kp X         &kp C         &kp V      &kp SEMICOLON  &ime_toggle      &kp DEL        &kp G        &kp D  &kp M  &kp J  &kp B
-&kp LCTRL         &kp LEFT_WIN  &kp LEFT_ALT  &lt 1 TAB  &mkp LCLK      &mkp RCLK        &lt 2 ENTER    &lt 3 SPACE                       &lt 6 ESCAPE
+&kp Q             &kp L         &kp U         &kp COMMA  &kp DOT                                                    &kp F        &kp W  &kp R  &kp Y  &kp P
+&kp E             &kp I         &kp A         &kp O      &kp MINUS      &none                        &kp BACKSPACE  &kp K        &kp T  &kp N  &kp S  &kp H
+&mt LEFT_SHIFT Z  &kp X         &kp C         &kp V      &kp SEMICOLON  &kp RC(INTERNATIONAL_4)      &kp DEL        &kp G        &kp D  &kp M  &kp J  &kp B
+&kp LCTRL         &kp LEFT_WIN  &kp LEFT_ALT  &lt 1 TAB  &mkp LCLK      &mkp RCLK                    &lt 2 ENTER    &lt 3 SPACE                       &lt 6 ESCAPE
             >;
 
             sensor-bindings = <&ROTATE SCRL_DOWN SCRL_UP>;
