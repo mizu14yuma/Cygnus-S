@@ -25,11 +25,39 @@
     };
 
     macros {
-        to_layer_0: to_layer_0 {
-            compatible = "zmk,behavior-macro-one-param";
-            #binding-cells = <1>;
-            bindings = <&to 0 &macro_param_1to1 &kp MACRO_PLACEHOLDER>;
-            label = "TO_LAYER_0";
+        ime_toggle: henkan {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LC(SPACE)>;
+            label = "HENKAN";
+        };
+
+        brace_macro: brace_macro {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LEFT_BRACE &kp RIGHT_BRACE &kp LEFT_ARROW>;
+            label = "BRACE_MACRO";
+        };
+
+        bracket_macro: bracket_macro {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LEFT_BRACKET &kp RIGHT_BRACKET &kp LEFT_ARROW>;
+            label = "BRACKET_MACRO";
+        };
+
+        parenthesis_macro: parenthesis_macro {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LEFT_PARENTHESIS &kp RIGHT_PARENTHESIS &kp LEFT_ARROW>;
+            label = "PARENTHESIS_MACRO";
+        };
+
+        double_quote_macro: double_quote_macro {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp DOUBLE_QUOTES &kp DOUBLE_QUOTES &kp LEFT_ARROW>;
+            label = "DOUBLE_QUOTE_MACRO";
         };
     };
 
@@ -58,10 +86,10 @@
 
         default_layer {
             bindings = <
-&kp Q             &kp L         &kp U         &kp COMMA  &kp DOT                                                &kp F        &kp W  &kp R  &kp Y  &kp P
-&kp E             &kp I         &kp A         &kp O      &kp MINUS      &none                    &kp BACKSPACE  &kp K        &kp T  &kp N  &kp S  &kp H
-&mt LEFT_SHIFT Z  &kp X         &kp C         &kp V      &kp SEMICOLON  &kp INTERNATIONAL_4      &kp DEL        &kp G        &kp D  &kp M  &kp J  &kp B
-&kp LCTRL         &kp LEFT_WIN  &kp LEFT_ALT  &lt 1 TAB  &mkp LCLK      &mkp RCLK                &lt 2 ENTER    &lt 3 SPACE                       &lt 6 ESCAPE
+&kp Q             &kp L         &kp U         &kp COMMA  &kp DOT                                        &kp F        &kp W  &kp R  &kp Y  &kp P
+&kp E             &kp I         &kp A         &kp O      &kp MINUS      &none            &kp BACKSPACE  &kp K        &kp T  &kp N  &kp S  &kp H
+&mt LEFT_SHIFT Z  &kp X         &kp C         &kp V      &kp SEMICOLON  &ime_toggle      &kp DEL        &kp G        &kp D  &kp M  &kp J  &kp B
+&kp LCTRL         &kp LEFT_WIN  &kp LEFT_ALT  &lt 1 TAB  &mkp LCLK      &mkp RCLK        &lt 2 ENTER    &lt 3 SPACE                       &lt 6 ESCAPE
             >;
 
             sensor-bindings = <&ROTATE SCRL_DOWN SCRL_UP>;
