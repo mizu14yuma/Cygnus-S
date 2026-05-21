@@ -93,10 +93,10 @@
 
         default_layer {
             bindings = <
-&kp Q             &kp L         &kp U         &kp COMMA  &kp DOT                                        &kp F        &kp W  &kp R  &kp Y  &kp P
-&mt LEFT_SHIFT E  &kp I         &lt 5 A       &kp O      &kp MINUS      &none            &kp BACKSPACE  &kp K        &kp T  &kp N  &kp S  &mt RIGHT_CONTROL H
-&mt LEFT_SHIFT Z  &kp X         &kp C         &kp V      &kp SEMICOLON  &ime_toggle      &kp DEL        &kp G        &kp D  &kp M  &kp J  &mt RIGHT_ALT B
-&kp LCTRL         &kp LEFT_WIN  &kp LEFT_ALT  &lt 1 TAB  &mkp LCLK      &mkp RCLK        &lt 2 ENTER    &lt 3 SPACE                       &lt 6 ESCAPE
+&kp Q             &kp L         &kp U         &kp COMMA  &kp DOT                                        &kp F        &kp W  &kp R  &kp Y              &kp P
+&mt LEFT_SHIFT E  &kp I         &lt 5 A       &kp O      &kp MINUS      &none            &kp BACKSPACE  &kp K        &kp T  &kp N  &mt RIGHT_SHIFT S  &mt RIGHT_CONTROL H
+&mt LEFT_SHIFT Z  &kp X         &kp C         &kp V      &kp SEMICOLON  &ime_toggle      &kp DEL        &kp G        &kp D  &kp M  &kp J              &mt RIGHT_ALT B
+&kp LCTRL         &kp LEFT_WIN  &kp LEFT_ALT  &lt 1 TAB  &mkp LCLK      &mkp RCLK        &lt 2 ENTER    &lt 3 SPACE                                   &lt 6 ESCAPE
             >;
 
             sensor-bindings = <&ROTATE SCRL_DOWN SCRL_UP>;
@@ -104,8 +104,8 @@
 
         FUNCTION {
             bindings = <
-&kp LEFT_BRACE        &kp RIGHT_BRACE        &brace_macro        &double_quote_macro  &kp PLUS                          &trans          &kp EXCLAMATION  &kp QUESTION  &kp TILDE   &kp GRAVE
-&kp LEFT_BRACKET      &kp RIGHT_BRACKET      &bracket_macro      &kp EQUAL            &kp MINUS     &trans      &trans  &kp UNDERSCORE  &kp AT_SIGN      &kp HASH      &kp DOLLAR  &kp PERCENT
+&kp LEFT_BRACE        &kp RIGHT_BRACE        &brace_macro        &double_quote_macro  &kp PLUS                          &trans          &kp AT_SIGN      &kp HASH      &kp TILDE   &kp GRAVE
+&kp LEFT_BRACKET      &kp RIGHT_BRACKET      &bracket_macro      &kp EQUAL            &kp MINUS     &trans      &trans  &kp UNDERSCORE  &kp EXCLAMATION  &kp QUESTION  &kp DOLLAR  &kp PERCENT
 &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &parenthesis_macro  &kp CARET            &kp ASTERISK  &trans      &trans  &trans          &kp AMPERSAND    &kp SLASH     &kp PIPE    &kp BACKSLASH
 &trans                &trans                 &trans              &trans               &trans        &trans      &trans  &trans                                                     &trans
             >;
