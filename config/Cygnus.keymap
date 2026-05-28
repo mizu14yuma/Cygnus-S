@@ -24,7 +24,7 @@
         };
 
         MouseLayer {
-            bindings = <&mo 4>;
+            bindings = <&tog 4>;
             key-positions = <18 19>;
             layers = <0 4>;
         };
