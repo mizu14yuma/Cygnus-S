@@ -18,29 +18,9 @@
     combos {
         compatible = "zmk,combos";
 
-        Ctrl_S {
-            bindings = <&kp LC(S)>;
-            key-positions = <20 21>;
-        };
-
         screen_shot {
             bindings = <&kp LS(LG(S))>;
             key-positions = <12 13>;
-        };
-
-        Ctrl_C {
-            bindings = <&kp LC(C)>;
-            key-positions = <21 24>;
-        };
-
-        Ctrl_X {
-            bindings = <&kp LC(X)>;
-            key-positions = <21 23>;
-        };
-
-        Ctrl_V {
-            bindings = <&kp LC(V)>;
-            key-positions = <21 25>;
         };
     };
 
@@ -124,10 +104,10 @@
 
         FUNCTION {
             bindings = <
-&brace_macro        &kp LEFT_BRACE        &kp RIGHT_BRACE        &double_quote_macro  &kp PLUS                          &kp DOUBLE_QUOTES  &kp AT_SIGN      &kp HASH      &kp TILDE   &kp GRAVE
-&bracket_macro      &kp LEFT_BRACKET      &kp RIGHT_BRACKET      &kp EQUAL            &kp MINUS     &trans      &trans  &kp UNDERSCORE     &kp EXCLAMATION  &kp QUESTION  &kp DOLLAR  &kp PERCENT
-&parenthesis_macro  &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &kp CARET            &kp ASTERISK  &trans      &trans  &trans             &kp AMPERSAND    &kp SLASH     &kp PIPE    &kp BACKSLASH
-&trans              &trans                &trans                 &trans               &trans        &trans      &trans  &trans                                                        &trans
+&brace_macro        &kp LEFT_BRACE        &kp RIGHT_BRACE        &double_quote_macro  &kp PLUS                          &kp HASH        &kp AT_SIGN      &kp DOUBLE_QUOTES  &kp TILDE   &kp GRAVE
+&bracket_macro      &kp LEFT_BRACKET      &kp RIGHT_BRACKET      &kp EQUAL            &kp MINUS     &trans      &trans  &kp UNDERSCORE  &kp EXCLAMATION  &kp QUESTION       &kp DOLLAR  &kp PERCENT
+&parenthesis_macro  &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &kp CARET            &kp ASTERISK  &trans      &trans  &trans          &kp AMPERSAND    &kp SLASH          &kp PIPE    &kp BACKSLASH
+&trans              &trans                &trans                 &trans               &trans        &trans      &trans  &trans                                                          &trans
             >;
         };
 
